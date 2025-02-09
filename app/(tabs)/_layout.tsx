@@ -11,13 +11,15 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
         }}
       />
+
       <Tabs.Screen
-        name="settings"
+        name="explore"
         options={{
-          title: 'Settings',
+          title: 'Explore',
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
         }}
-        />
+      />
+
       <Tabs.Screen
         name="account"
         options={{
@@ -27,12 +29,13 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="explore"
+        name="settings"
         options={{
-          title: 'Explore',
+          title: 'Settings',
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
         }}
-      />
+        />
+        
     </Tabs>
   );
 }
