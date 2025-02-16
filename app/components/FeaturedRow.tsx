@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import RestaurantCard from '../components/RestaurantCard';
+import RestaurantCard from './RestaurantCard';
 
 interface FeaturedRowProps {
   id: number;
