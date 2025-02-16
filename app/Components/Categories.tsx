@@ -1,7 +1,7 @@
 import{ StyleSheet, Text, View , FlatList, Pressable} from 'react-native'
 import React from 'react'
 
-
+import { useNavigation } from '@react-navigation/native';
 
 const Categories = () => {
     const items = [
@@ -31,7 +31,19 @@ const Categories = () => {
         }
     ]
 
-}
+        return (
+          <View style={{ marginTop: 6, marginBottom: 5 }}>
+            <FlatList showsHorizontalScrollIndicator={false}
+              horizontal={true}
+              data={items}
+              renderItem={({item}) => (
+                <Pressable style ={{backgroundColor:"green",margin: 7,padding:5,borderRadius:4}}>
+                    <Text style={{color:"#FFF"}}>{item.name}</Text>
+                </Pressable>
+              )}/>
+          </View>
+        );
+    }
 
 export default Categories
 
