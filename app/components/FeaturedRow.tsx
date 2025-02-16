@@ -1,13 +1,19 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
+import RestaurantCard from './RestaurantCard';
 
-// const img = require('../../assets/images/4.jpeg');
-const FeaturedRow = ({ title, description, id }) => {
-  const [restaurants, setRestaurants] = useState([]);
+interface FeaturedRowProps {
+  id: number;
+  title: string;
+  description: string;
+}
+
+const FeaturedRow: React.FC<FeaturedRowProps> = ({ title, description, id }) => {
+  const [restaurants, setRestaurants] = useState<any[]>([]); // Temporarily using `any[]` for restaurants
 
   return (
-    <View className="">
+    <View>
       <View className="mt-4 px-4 flex-row items-center justify-between">
         <Text className="font-bold text-lg">{title}</Text>
         <Ionicons name="arrow-forward" size={33} color="#00CCBB" />
