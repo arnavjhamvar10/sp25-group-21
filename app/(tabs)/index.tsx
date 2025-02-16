@@ -10,11 +10,11 @@ import {
   TouchableOpacity,
   View,
   SafeAreaView,
+  StyleSheet,
 } from 'react-native';
 
 import Categories from '../components/Categories';
 import FeaturedRow from '../components/FeaturedRow';
-
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -25,58 +25,115 @@ const HomeScreen = () => {
   }, []);
 
   return (
-
-    <SafeAreaView className="bg-white">
+    <SafeAreaView style={styles.safeArea}>
       <StatusBar style="auto" />
       {/* Header */}
-      <View className="flex-row py-3 mx-4 space-x-2 items-center">
-        <Image
-          className="h-14 w-14 bg-gray-300 p-4 rounded-full"
-        />
-
-        <View className="flex-1">
-          <Text className="font-bold text-gray-400 text-xs">Deliver Now?</Text>
+      <View style={styles.header}>
+        <Image style={styles.profileImage} source={{ uri: 'https://via.placeholder.com/56' }} />
+        <View style={styles.locationContainer}>
+          <Text style={styles.deliveryText}>Deliver Now?</Text>
           <TouchableOpacity>
-            <Text className="font-bold text-xl">
+            <Text style={styles.currentLocation}>
               Current Location
-              <Ionicons name="chevron-down" size={20} color="#00CCBB" />
+              <Ionicons name="chevron-down" size={20} color="#8B9C9B" />
             </Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity>
-          <Ionicons name="person-outline" size={35} color="#00CCBB" />
+          <Ionicons name="person-outline" size={35} color="#8B9C9B" />
         </TouchableOpacity>
       </View>
 
       {/* Search */}
-      <View className="flex-row items-center space-x-2 mx-4 mb-4">
-        <View className="flex-row space-x-2 bg-gray-200 p-3 flex-1">
+      <View style={styles.searchContainer}>
+        <View style={styles.searchBox}>
           <Ionicons name="search" size={20} color="gray" />
-          <TextInput placeholder="Restaurants and cuisines" keyboardType="default" />
+          <TextInput placeholder="Restaurants and cuisines" keyboardType="default" style={styles.searchInput} />
         </View>
         <TouchableOpacity>
-          <Ionicons name="filter" size={24} color="#00CCBB" />
+          <Ionicons name="filter" size={24} color="#8B9C9B" />
         </TouchableOpacity>
       </View>
 
       {/* Body */}
-      <ScrollView>
-        {/* Categories */}
+      <ScrollView contentContainerStyle={styles.scrollContent}>
         <Categories />
-
-        {/* Featured Categories */}
         {featuredCategories.map((category) => (
           <FeaturedRow
-            key={category.id} // Changed `_id` to `id` for consistency
+            key={category.id}
             id={category.id}
-            title={category.title} // Changed `name` to `title` to match previous structure
-            description={category.description} // Changed `short_description` to `description`
+            title={category.title}
+            description={category.description}
           />
         ))}
-        <View className="pb-36" />
+        <View style={styles.bottomSpacing} />
       </ScrollView>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    width: '100%',
+  },
+  profileImage: {
+    height: 56,
+    width: 56,
+    backgroundColor: '#8B9C9B',
+    borderRadius: 28,
+  },
+  locationContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  deliveryText: {
+    fontSize: 12,
+    color: 'gray',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  currentLocation: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'black',
+    textAlign: 'center',
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    marginBottom: 12,
+    width: '100%',
+  },
+  searchBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#e5e5e5',
+    flex: 1,
+    padding: 10,
+    borderRadius: 8,
+  },
+  searchInput: {
+    marginLeft: 8,
+    flex: 1,
+  },
+  scrollContent: {
+    paddingBottom: 80,
+    alignItems: 'center',
+  },
+  bottomSpacing: {
+    height: 100,
+  },
+});
 
 export default HomeScreen;

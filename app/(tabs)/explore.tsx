@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TextInput,Image,Pressable,FlatList} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import Categories from '../Components/Categories';
+import Categories from '../components/Categories';
 
 const ExplorePage = () => {
   return (
