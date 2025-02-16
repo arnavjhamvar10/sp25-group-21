@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+, "app/components/FeaturedRow.js", "app/components/Categories.js", "app/components/CategoryCard.js"  ]
 }
