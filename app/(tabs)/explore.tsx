@@ -4,6 +4,7 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import Categories from '../components/Categories';
 import ItemComponent from '../components/ItemComponent';
 
+
 const ExplorePage = () => {
   return (
     <SafeAreaView style={{margin:10}}>

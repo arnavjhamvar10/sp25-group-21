@@ -20,7 +20,7 @@ type RootStackParamList = {
   };
 };
 
-// Define props interface
+
 interface RestaurantCardProps {
   id: number;
   imgUrl: string;
@@ -29,7 +29,7 @@ interface RestaurantCardProps {
   genre: string;
   address: string;
   short_description: string;
-  dishes: any[]; // Replace with specific type if available
+  dishes: any[]; 
   long: number;
   lat: number;
 }

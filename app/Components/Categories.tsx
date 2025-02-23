@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import CategoryCard from './CategoryCard';
+import { StyleSheet } from 'react-native';
 
 // const img = require('../../assets/images/4.jpeg');
 interface Category {
@@ -29,5 +30,31 @@ const Categories = () => {
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginVertical: 10,
+    paddingHorizontal: 16,
+  },
+  headerContainer: {
+    marginTop: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  description: {
+    fontSize: 12,
+    color: 'gray',
+    paddingHorizontal: 4,
+  },
+  scrollContainer: {
+    paddingHorizontal: 16,
+    paddingTop: 8,
+  },
+});
 
 export default Categories;
