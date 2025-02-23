@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import RestaurantCard from './RestaurantCard';
+import { StyleSheet } from 'react-native';
 
 interface FeaturedRowProps {
   id: number;
@@ -10,7 +11,7 @@ interface FeaturedRowProps {
 }
 
 const FeaturedRow: React.FC<FeaturedRowProps> = ({ title, description, id }) => {
-  const [restaurants, setRestaurants] = useState<any[]>([]); // Temporarily using `any[]` for restaurants
+  const [restaurants, setRestaurants] = useState<any[]>([]); 
 
   return (
     <View>
@@ -44,5 +45,31 @@ const FeaturedRow: React.FC<FeaturedRowProps> = ({ title, description, id }) => 
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginVertical: 10,
+    paddingHorizontal: 16,
+  },
+  headerContainer: {
+    marginTop: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  description: {
+    fontSize: 12,
+    color: 'gray',
+    paddingHorizontal: 4,
+  },
+  scrollContainer: {
+    paddingHorizontal: 16,
+    paddingTop: 8,
+  },
+});
 
 export default FeaturedRow;
