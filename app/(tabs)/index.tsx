@@ -35,12 +35,12 @@ const HomeScreen = () => {
           <TouchableOpacity>
             <Text style={styles.currentLocation}>
               Current Location
-              <Ionicons name="chevron-down" size={20} color="#8B9C9B" />
+              <Ionicons name="chevron-down" size={20} color="#4371A7" />
             </Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity>
-          <Ionicons name="person-outline" size={35} color="#8B9C9B" />
+          <Ionicons name="person-outline" size={35} color="#4371A7" />
         </TouchableOpacity>
       </View>
 
@@ -51,7 +51,7 @@ const HomeScreen = () => {
           <TextInput placeholder="Restaurants and cuisines" keyboardType="default" style={styles.searchInput} />
         </View>
         <TouchableOpacity>
-          <Ionicons name="filter" size={24} color="#8B9C9B" />
+          <Ionicons name="filter" size={24} color="#4371A7" />
         </TouchableOpacity>
       </View>
 
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   profileImage: {
     height: 56,
     width: 56,
-    backgroundColor: '#8B9C9B',
+    backgroundColor: '#4371A7',
     borderRadius: 28,
   },
   locationContainer: {
@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     borderRadius: 8,
+    marginRight: 5,
   },
   searchInput: {
     marginLeft: 8,
