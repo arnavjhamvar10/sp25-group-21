@@ -16,6 +16,8 @@ import {
 import Categories from '../components/Categories';
 import FeaturedRow from '../components/FeaturedRow';
 
+import Marquee from 'react-fast-marquee';
+
 const HomeScreen = () => {
   const navigation = useNavigation();
   const [featuredCategories, setFeaturedCategories] = useState<any[]>([]);
@@ -23,6 +25,12 @@ const HomeScreen = () => {
   useLayoutEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, []);
+
+  const marqueeItems = [
+    { id: 1, text: 'Free Delivery on Your First Order!', color: '#FF6B6B' },
+    { id: 2, text: '20% Off on Selected Restaurants!', color: '#FFD93D' },
+    { id: 3, text: 'New Cuisines Added Daily!', color: '#6BCB77' },
+  ];
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -48,11 +56,26 @@ const HomeScreen = () => {
       <View style={styles.searchContainer}>
         <View style={styles.searchBox}>
           <Ionicons name="search" size={20} color="gray" />
-          <TextInput placeholder="Restaurants and cuisines" keyboardType="default" style={styles.searchInput} />
+          <TextInput
+            placeholder="Restaurants and cuisines"
+            keyboardType="default"
+            style={styles.searchInput}
+          />
         </View>
         <TouchableOpacity>
           <Ionicons name="filter" size={24} color="#4371A7" />
         </TouchableOpacity>
+      </View>
+
+      {/* Marquee Component */}
+      <View style={styles.marqueeContainer}>
+        <Marquee gradient={false} speed={50}>
+          {marqueeItems.map((item) => (
+            <Text key={item.id} style={[styles.marqueeText, { color: item.color }]}>
+              {item.text}   •   
+            </Text>
+          ))}
+        </Marquee>
       </View>
 
       {/* Body */}
@@ -127,6 +150,16 @@ const styles = StyleSheet.create({
   searchInput: {
     marginLeft: 8,
     flex: 1,
+  },
+  marqueeContainer: {
+    width: '100%',
+    paddingVertical: 10,
+    backgroundColor: '#f7f7f7',
+  },
+  marqueeText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    paddingHorizontal: 10,
   },
   scrollContent: {
     paddingBottom: 80,
