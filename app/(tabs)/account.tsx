@@ -1,17 +1,12 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { useSegments } from 'expo-router';
+import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
+import { Link } from 'expo-router';
 import { AntDesign, Feather } from '@expo/vector-icons';
 
 export default function AccountScreen() {
-  const segments = useSegments();
-  const currentTab = segments[segments.length - 1] || 'Account';
-
-  // Dummy User Data (Replace with API or AsyncStorage)
   const user = {
     name: 'John Doe',
     email: 'john.doe@example.com',
-    profilePicture: 'https://via.placeholder.com/100', // Replace with actual image URL
+    profilePicture: 'https://via.placeholder.com/100', 
   };
 
   return (
@@ -25,20 +20,23 @@ export default function AccountScreen() {
 
       {/* Account Options */}
       <View style={styles.menu}>
-        <TouchableOpacity style={styles.menuItem} onPress={() => console.log('View Order History')}>
-          <AntDesign name="profile" size={24} color="black" />
-          <Text style={styles.menuText}>Order History</Text>
-        </TouchableOpacity>
+      <Link href="./account_pages/orderHist">
+        <Pressable style={styles.menuItem}>
+        <AntDesign name="profile" size={24} color="black" />
+        <Text style={styles.menuText}>Order History</Text>
+        </Pressable>
+        </Link>
+        
 
-        <TouchableOpacity style={styles.menuItem} onPress={() => console.log('Navigate to Settings')}>
+        <Pressable style={styles.menuItem} onPress={() => console.log('Navigate to Settings')}>
           <Feather name="settings" size={24} color="black" />
           <Text style={styles.menuText}>Settings</Text>
-        </TouchableOpacity>
+        </Pressable>
 
-        <TouchableOpacity style={styles.menuItem} onPress={() => console.log('Logging Out')}>
+        <Pressable style={styles.menuItem} onPress={() => console.log('Logging Out')}>
           <AntDesign name="logout" size={24} color="red" />
           <Text style={[styles.menuText, { color: 'red' }]}>Logout</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
     </View>
   );
@@ -94,6 +92,3 @@ const styles = StyleSheet.create({
     color: '#333',
   },
 });
-
-
-
