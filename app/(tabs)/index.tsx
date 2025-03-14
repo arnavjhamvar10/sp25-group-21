@@ -16,7 +16,6 @@ import {
 import Categories from '../components/Categories';
 import FeaturedRow from '../components/FeaturedRow';
 
-import Marquee from 'react-fast-marquee';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -65,17 +64,6 @@ const HomeScreen = () => {
         <TouchableOpacity>
           <Ionicons name="filter" size={24} color="#4371A7" />
         </TouchableOpacity>
-      </View>
-
-      {/* Marquee Component */}
-      <View style={styles.marqueeContainer}>
-        <Marquee gradient={false} speed={50}>
-          {marqueeItems.map((item) => (
-            <Text key={item.id} style={[styles.marqueeText, { color: item.color }]}>
-              {item.text}   •   
-            </Text>
-          ))}
-        </Marquee>
       </View>
 
       {/* Body */}
