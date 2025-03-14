@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
   Image,
@@ -15,36 +15,38 @@ import {
 } from 'react-native';
 
 import Categories from '../components/Categories';
-import FeaturedRow from '../components/FeaturedRow';
 
-// Dummy restaurant data
+// Dummy restaurant categories with images
 const restaurantCategories = [
   {
     id: '1',
     title: 'Top Rated',
     description: 'Highly rated restaurants',
+    image: 'https://via.placeholder.com/300x150', // Category image
     restaurants: [
-      { id: '101', name: 'Pizza Palace', image: 'https://via.placeholder.com/150' },
-      { id: '102', name: 'Sushi Central', image: 'https://via.placeholder.com/150' },
-      { id: '103', name: 'Burger Hub', image: 'https://via.placeholder.com/150' },
-      { id: '104', name: 'Pasta House', image: 'https://via.placeholder.com/150' },
+      { id: '101', name: 'Pizza Palace', image: 'https://bellowsfallsvt.org/wp-content/uploads/2021/09/Pizza-Palace.jpg' },
+      { id: '102', name: 'Sushi Central', image: 'https://images.rappi.com.mx/restaurants_logo/sushi-central-logo1-1567727663518-1671543413280.png' },
+      { id: '103', name: 'Burger Hub', image: 'https://static.wixstatic.com/media/9a1d3f_98137e3ad55a455c866d8b5bbd444988~mv2.png/v1/fill/w_563,h_251,al_c,lg_1,q_85,enc_avif,quality_auto/Burger%20Hub%20Logo%20_%20Located%20at%206231%20S%2027th%20St%20Greenfield%2C%20WI%2053221%20_edited.png' },
+      { id: '104', name: 'Pasta House', image: 'https://images.getbento.com/accounts/37f1434cf89df96a29c06808001134ce/media/images/Catering_Logo_24-removebg-preview.png?w=1000&fit=max&auto=compress,format&h=1000' },
     ],
   },
   {
     id: '2',
     title: 'Fast Food',
     description: 'Quick and delicious',
+    image: 'https://via.placeholder.com/300x150',
     restaurants: [
-      { id: '201', name: 'McBurger', image: 'https://via.placeholder.com/150' },
-      { id: '202', name: 'Fries & More', image: 'https://via.placeholder.com/150' },
-      { id: '203', name: 'Fried Chicken Spot', image: 'https://via.placeholder.com/150' },
-      { id: '204', name: 'Taco Fiesta', image: 'https://via.placeholder.com/150' },
+      { id: '201', name: 'McBurger', image: 'https://static.vecteezy.com/system/resources/previews/007/166/415/non_2x/burger-logo-design-template-vector.jpg' },
+      { id: '202', name: 'Fries & More', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScP5QnmqugI2I0zVyZ3IUbt6zNL37C7IbntQ&s' },
+      { id: '203', name: 'KFC', image: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/57/KFC_logo-image.svg/1200px-KFC_logo-image.svg.png' },
+      { id: '204', name: 'Taco Fiesta', image: 'https://media-cdn.grubhub.com/image/upload/d_search:browse-images:default.jpg/w_300,q_100,fl_lossy,dpr_2.0,c_fit,f_auto,h_300/oxpywb3ibcqd6vtszdfq' },
     ],
   },
   {
     id: '3',
     title: 'Healthy Choices',
     description: 'Fresh and nutritious',
+    image: 'https://via.placeholder.com/300x150',
     restaurants: [
       { id: '301', name: 'Green Bowl', image: 'https://via.placeholder.com/150' },
       { id: '302', name: 'Smoothie Heaven', image: 'https://via.placeholder.com/150' },
@@ -95,15 +97,21 @@ const HomeScreen = () => {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <Categories />
 
-        {/* Restaurant Rows */}
+        {/* Restaurant Rows with Images */}
         {restaurantCategories.map((category) => (
           <View key={category.id} style={styles.featuredRowContainer}>
+            {/* Category Image */}
+            <Image source={{ uri: category.image }} style={styles.categoryImage} />
+
+            {/* Title & Arrow */}
             <View style={styles.rowHeader}>
               <Text style={styles.rowTitle}>{category.title}</Text>
               <TouchableOpacity>
                 <Ionicons name="arrow-forward" size={24} color="#4371A7" />
               </TouchableOpacity>
             </View>
+
+            {/* Restaurants */}
             <FlatList
               data={category.restaurants}
               horizontal
@@ -188,6 +196,12 @@ const styles = StyleSheet.create({
   featuredRowContainer: {
     width: '100%',
     marginVertical: 10,
+  },
+  categoryImage: {
+    width: '100%',
+    height: 150,
+    borderRadius: 10,
+    marginBottom: 5,
   },
   rowHeader: {
     flexDirection: 'row',
