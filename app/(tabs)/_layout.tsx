@@ -34,6 +34,14 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
+        name="mappi"
+        options={{
+          title: 'Mappi',
+          tabBarIcon: ({ color }) => <Feather name="map" size={24} color="black" />,
+        }}
+        />
+      
+      <Tabs.Screen
         name="settings"
         options={{
           title: 'Settings',
