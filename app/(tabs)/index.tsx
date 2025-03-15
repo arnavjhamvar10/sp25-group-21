@@ -48,7 +48,7 @@ const restaurantCategories = [
     description: 'Fresh and nutritious',
     image: 'https://via.placeholder.com/300x150',
     restaurants: [
-      { id: '301', name: 'Green Bowl', image: 'https://via.placeholder.com/150' },
+      { id: '301', name: 'Green Bowl', image: 'https://scontent-bos5-1.xx.fbcdn.net/v/t39.30808-6/299429507_430244989128172_7591400791845350871_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=yUvb0rS1AJEQ7kNvgEfblwv&_nc_zt=23&_nc_ht=scontent-bos5-1.xx&_nc_gid=rPWGnOIy9D35HKqY6PkZqA&oh=00_AYGUiMhsC4ERpzzBYLsQTDIOmQdMoILJW3NY1c4p5R6bLQ&oe=67DA5F42' },
       { id: '302', name: 'Smoothie Heaven', image: 'https://via.placeholder.com/150' },
       { id: '303', name: 'Vegan Delights', image: 'https://via.placeholder.com/150' },
       { id: '304', name: 'Organic Bites', image: 'https://via.placeholder.com/150' },
