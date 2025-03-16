@@ -1,42 +1,67 @@
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { AntDesign, Feather } from '@expo/vector-icons';
+import { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function AccountScreen() {
-  const user = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    profilePicture: 'https://via.placeholder.com/100', 
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    // Check if user is logged in
+    const checkAuth = async () => {
+      const userToken = await AsyncStorage.getItem('userToken');
+      setIsAuthenticated(!!userToken);
+    };
+    checkAuth();
+  }, []);
+
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem('userToken'); // Remove token
+    setIsAuthenticated(false);
+    router.replace('./login'); // Redirect to login screen
   };
 
   return (
     <View style={styles.container}>
       {/* Profile Header */}
       <View style={styles.profileSection}>
-        <Image source={{ uri: user.profilePicture }} style={styles.profileImage} />
-        <Text style={styles.userName}>{user.name}</Text>
-        <Text style={styles.userEmail}>{user.email}</Text>
+        <Image
+          source={{ uri: 'https://via.placeholder.com/100' }}
+          style={styles.profileImage}
+        />
+        <Text style={styles.userName}>John Doe</Text>
+        <Text style={styles.userEmail}>john.doe@example.com</Text>
       </View>
 
       {/* Account Options */}
       <View style={styles.menu}>
-      <Link href="./account_pages/orderHist">
-        <Pressable style={styles.menuItem}>
-        <AntDesign name="profile" size={24} color="black" />
-        <Text style={styles.menuText}>Order History</Text>
-        </Pressable>
+        <Link href="./account_pages/orderHist" asChild>
+          <Pressable style={styles.menuItem}>
+            <AntDesign name="profile" size={24} color="black" />
+            <Text style={styles.menuText}>Order History</Text>
+          </Pressable>
         </Link>
-        
 
         <Pressable style={styles.menuItem} onPress={() => console.log('Navigate to Settings')}>
           <Feather name="settings" size={24} color="black" />
           <Text style={styles.menuText}>Settings</Text>
         </Pressable>
 
-        <Pressable style={styles.menuItem} onPress={() => console.log('Logging Out')}>
-          <AntDesign name="logout" size={24} color="red" />
-          <Text style={[styles.menuText, { color: 'red' }]}>Logout</Text>
-        </Pressable>
+        {isAuthenticated ? (
+          <Pressable style={styles.menuItem} onPress={handleLogout}>
+            <AntDesign name="logout" size={24} color="red" />
+            <Text style={[styles.menuText, { color: 'red' }]}>Log Out</Text>
+          </Pressable>
+        ) : (
+          <Link href="/signup" asChild>
+            <Pressable style={styles.menuItem}>
+              <AntDesign name="login" size={24} color="green" />
+              <Text style={[styles.menuText, { color: 'green' }]}>Register</Text>
+            </Pressable>
+          </Link>
+        )}
       </View>
     </View>
   );
