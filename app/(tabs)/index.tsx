@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
   Image,
@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 
 import Categories from '../components/Categories';
+import {supabase} from '../../supabaseClient';
 
 // Dummy restaurant categories with images
 const restaurantCategories = [
@@ -58,10 +59,26 @@ const restaurantCategories = [
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const [error, setError] = useState("");
+  const [stores, setStores] = useState<any[]>([]); 
 
   useLayoutEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, []);
+
+  useEffect(()=>{
+    GetStores();
+  },[])
+
+  async function GetStores (){
+    const { data, error} = await supabase.from('store').select('*');
+    if (error){
+      setError("Failed to fetch data");
+      return        
+    }
+    console.log(data);
+    setStores(data);
+  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
