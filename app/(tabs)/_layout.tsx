@@ -8,7 +8,30 @@ import { View, Text, StyleSheet } from 'react-native';
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: 'green' }}>
+    <Tabs
+    screenOptions={{
+      tabBarActiveTintColor: 'purple', // Active tab color
+      tabBarInactiveTintColor: 'black', // Inactive tab color
+      tabBarStyle: {
+        position: 'absolute',
+        bottom: 20, // Lifted above the bottom
+        left: 500,
+        right: 500,
+        elevation: 10, // Android shadow
+        backgroundColor: 'white',
+        borderRadius: 30, // Rounded shape
+        height: 70, // More height for better look
+        paddingBottom: 10, // Adjust padding
+        shadowColor: '#000', // iOS shadow
+        shadowOpacity: 0,
+        shadowOffset: { width: 0, height: 4 },
+      },
+      tabBarLabelStyle: {
+        fontSize: 12,
+        fontWeight: '500',
+      },
+    }}
+  >
       <Tabs.Screen
         name="index"
         options={{
@@ -33,6 +56,14 @@ export default function TabLayout() {
         }}
       />
 
+      <Tabs.Screen
+        name="mappi"
+        options={{
+          title: 'Mappi',
+          tabBarIcon: ({ color }) => <Feather name="map" size={24} color="black" />,
+        }}
+        />
+      
       <Tabs.Screen
         name="settings"
         options={{
